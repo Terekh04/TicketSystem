@@ -26,6 +26,24 @@ function App() {
       } catch (error) {
         console.error("Ошибка при запросе: ", error);
       }
+      try {
+        const response = await fetch(`${apiUrl}/users/`);
+        
+        if (!response.ok) {
+          throw new Error(`Ошибка HTTP: ${response.status}`);
+        }
+      
+        const contentType = response.headers.get('content-type');
+        if (!contentType?.includes('application/json')) {
+          throw new Error('Ответ не в формате JSON!');
+        }
+      
+        const data = await response.json();
+        console.log("Данные пользователей:", data);
+      
+      } catch (error) {
+        console.error("Ошибка запроса:", error);
+      }
     };
 
     fetchData();
