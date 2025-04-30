@@ -7,6 +7,8 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+      console.log("Запрос к:", `${apiUrl}/users/`);
+
         const response = await fetch(`${apiUrl}/users/`, {
           method: 'GET',
           credentials: 'include', // Если нужны куки/авторизация
@@ -44,7 +46,6 @@ function App() {
       } catch (error) {
         console.error("Ошибка запроса:", error);
       }
-      console.log("Запрос к:", `${apiUrl}/users/`);
     };
 
     fetchData();
