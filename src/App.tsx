@@ -44,6 +44,7 @@ function App() {
       } catch (error) {
         console.error("Ошибка запроса:", error);
       }
+      console.log("Запрос к:", `${apiUrl}/users/`);
     };
 
     fetchData();
