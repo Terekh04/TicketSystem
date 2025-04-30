@@ -2,7 +2,7 @@ import ListGroup from "./components/ListGroup";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
-fetch(`${apiUrl}/auth/me`)
+fetch(`${apiUrl}/users/`)
   .then(res => res.json())
   .then(data => console.log("Получено: ", data));
 
