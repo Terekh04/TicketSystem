@@ -4,7 +4,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 const RedirectButton = () => {
   const handleClick = () => {
-    window.location.href = '${apiUrl}/auth/google'; // Переход по URL
+    window.location.href = apiUrl + '/auth/google'; // Переход по URL
   };
 
   return (
