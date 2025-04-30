@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import ListGroup from "./components/ListGroup";
 
-const apiUrl = "https://ticketsystem-qfj9.onrender.com";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function App() {
   useEffect(() => {
