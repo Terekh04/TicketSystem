@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import HeaderInfo from './components/HeaderInfo';
+import Line from './components/Line';
 import './App.css';
 
 
@@ -10,6 +11,7 @@ function App() {
     <>
     <div className='siteWrapper'>
     <HeaderInfo/>
+    <Line/>
     </div>
     </>
   );
