@@ -85,6 +85,9 @@ header nav .signIn{
   justify-content: center;
   align-items: center;
 }
+header nav .signIn:hover{
+  background-color: #1f313b;
+}
 .line{
   height: 15px;
   background: #4d648d;
