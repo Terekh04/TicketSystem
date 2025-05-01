@@ -8,7 +8,9 @@ const apiUrl = import.meta.env.VITE_API_URL;
 function App() {
   return (
     <>
+    <div className='siteWrapper'>
     <HeaderInfo/>
+    </div>
     </>
   );
 }

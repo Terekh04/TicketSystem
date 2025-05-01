@@ -1,4 +1,17 @@
+@font-face {
+  font-family: 'PatuaOne';
+  font-weight: 400;
+  font-style: normal;
+  src: url('./assets/fonts/PatuaOne-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-weight: 400;
+  font-style: normal;
+  src: url('./assets/fonts/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
+}
 .siteWrapper {
+  background: #ecedef;
   height: 100vh;
   width: 100%;     
   margin: 0;
@@ -8,7 +21,7 @@
 header{
   height: 100px;
   width: 100vw;
-  margin-top: 30px;
+  padding-top: 30px;
   display: flex;
   justify-content: space-between;
 }
@@ -16,12 +29,13 @@ header .logoOver{
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding-left: 20px;
+  padding-left: 40px;
   height: 80%;
   width: 80px;
   font-size: 30px;
   text-decoration: none;
   color:#4d648d;
+  font-family: 'PatuaOne';
 }
 header .logoOver img{
   transform: translateY(-10px);
@@ -34,13 +48,14 @@ header nav{
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  font-family: 'Inter';
 }
 header nav a{
   display: inline;
   justify-content: space-between;
   margin: 0 20px 0 20px;
   padding: 10px 20px;  
-  font-size: 15px;  
+  font-size: 20px;  
   outline: none;
   text-decoration: none;
   color:black;
