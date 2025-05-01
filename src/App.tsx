@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import RedirectButton from './components/RedirectButton';
+import HeaderInfo from './components/HeaderInfo';
 import './App.css';
 
 
@@ -7,11 +7,9 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 function App() {
   return (
-    <div className='siteWrapper'>
     <>
-      <RedirectButton />
+    <HeaderInfo/>
     </>
-    </div>
   );
 }
 

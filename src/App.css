@@ -1,14 +1,62 @@
 .siteWrapper {
-  background: url('./assets/niggers.jpg');
-  background-size: cover;          /* 🔥 растягивает */
-  background-position: center;     /* центрирует */
-  background-repeat: no-repeat;    /* не повторяет */
-  height: 100vh;                   /* высота на весь экран */
+  height: 100vh;
   width: 100%;     
   margin: 0;
   padding: 0;
   min-height: 100vh;
 }
-#root{
-  min-height: 100vh;
+header{
+  height: 100px;
+  width: 100vw;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+header .logoOver{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 20px;
+  height: 80%;
+  width: 80px;
+  font-size: 30px;
+  text-decoration: none;
+  color:#4d648d;
+}
+header .logoOver .logo{
+  padding-left: 20px;
+}
+header nav{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+header nav a{
+  display: inline;
+  justify-content: space-between;
+  margin: 0 20px 0 20px;
+  padding: 10px 20px;  
+  font-size: 15px;  
+  outline: none;
+  text-decoration: none;
+  color:black;
+}
+header nav a:hover{
+  display: flex;
+  justify-content: center;
+  align-items: center;      /* важно! чтобы работал box-shadow */
+  border-radius: 10px;           /* округлые углы */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* мягкая тень */
+  transition: box-shadow 0.3s ease;
+}
+header nav .signIn{
+  background-color: #4d648d;
+  color: aliceblue;
+  border-radius: 10px;
+  margin-right: 60px;
+  width: 120px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
