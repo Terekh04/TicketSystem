@@ -6,11 +6,18 @@
   src: url('./assets/fonts/PatuaOne-Regular.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'Inter-Regular';
+  font-family: 'Inter';
   font-weight: 400;
   font-style: normal;
   font-display: swap;
   src: url('./assets/fonts/Inter-Regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Inter';
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url('./assets/fonts/Inter-Bold.ttf');
 }
 .siteWrapper {
   background: white;
@@ -19,76 +26,4 @@
   margin: 0;
   padding: 0;
   min-height: 100vh;
-}
-header{
-  height: 100px;
-  width: 100vw;
-  padding-top: 30px;
-  display: flex;
-  justify-content: space-between;
-}
-header .logoOver{
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-left: 40px;
-  height: 80%;
-  width: 80px;
-  font-size: 30px;
-  text-decoration: none;
-  color:#1e1f26;
-  font-family: 'PatuaOne';
-}
-header .logoOver img{
-  transform: translateY(-10px);
-  height: 50px;
-  aspect-ratio: 1;
-  padding-left: 0px;
-  object-fit: contain;
-}
-header nav{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  font-family: 'Inter-Regular';
-}
-header nav a{
-  display: inline;
-  justify-content: space-between;
-  margin: 0 20px 0 20px;
-  padding: 10px 20px;  
-  font-size: 20px;  
-  outline: none;
-  text-decoration: none;
-  color:black;
-}
-header nav a:hover{
-  display: flex;
-  justify-content: center;
-  align-items: center;    
-  color:#ecedef;
-  background-color: black;  
-  border-radius: 10px;           
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-  transition: box-shadow 0.3s ease;
-  transition: background-color 0.3s ease;
-}
-header nav .signIn{
-  background-color:#1e1f26;
-
-  color: aliceblue;
-  border-radius: 10px;
-  margin-right: 60px;
-  width: 120px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-header nav .signIn:hover{
-  background-color: #4b5a62;
-}
-.line{
-  height: 15px;
-  background: #4d648d;
 }

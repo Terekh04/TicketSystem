@@ -1,5 +1,6 @@
 import { Fragment } from "react/jsx-runtime";
 import React from 'react';
+import './HeaderInfo.css'
 
 const apiUrl = import.meta.env.VITE_API_URL;
 const HeaderInfo = () => {
