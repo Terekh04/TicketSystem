@@ -4,7 +4,7 @@ html, body {
   height: 100%;
 }
 body {
-  background-color: blue;
+  background-color: blue !important;
 }
 #root {
   min-height: 100vh;
