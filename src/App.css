@@ -1,5 +1,10 @@
 .siteWrapper {
   background: url('./assets/niggers.jpg');
+  background-size: cover;          /* 🔥 растягивает */
+  background-position: center;     /* центрирует */
+  background-repeat: no-repeat;    /* не повторяет */
+  height: 100vh;                   /* высота на весь экран */
+  width: 100%;     
   margin: 0;
   padding: 0;
   min-height: 100vh;
