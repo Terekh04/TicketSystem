@@ -5,10 +5,10 @@
   src: url('./assets/fonts/PatuaOne-Regular.ttf') format('truetype');
 }
 @font-face {
-  font-family: 'Inter';
+  font-family: 'Inter-Regular';
   font-weight: 400;
   font-style: normal;
-  src: url('./assets/fonts/Inter-VariableFont_opsz\,wght.ttf') format('truetype');
+  src: url('./assets/fonts/Inter-Regular.ttf') format('truetype');
 }
 .siteWrapper {
   background: #ecedef;
@@ -48,7 +48,7 @@ header nav{
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-family: 'Inter';
+  font-family: 'Inter-Regular';
 }
 header nav a{
   display: inline;
