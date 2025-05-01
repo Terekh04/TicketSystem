@@ -6,13 +6,13 @@ import './App.css';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 function App() {
-  <div className='siteWrapper'>
   return (
+    <div className='siteWrapper'>
     <>
       <RedirectButton />
     </>
+    </div>
   );
-  </div>
 }
 
 export default App;
