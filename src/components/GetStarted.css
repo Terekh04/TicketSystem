@@ -35,13 +35,18 @@
     font-size: 20px;
     text-decoration: none;
     padding: 10px 20px;
+    margin-top: 20px;
     border-radius: 50px;
     background-color:#1e1f26;
     color:aliceblue;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transfrom 0.3s ease;
+    
+    
 }
 .start .button:hover{
     background-color: #4b5a62;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
     border-radius: 50px;
+    transform: translateY(-2px);
+
 }

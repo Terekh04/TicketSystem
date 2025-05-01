@@ -1,5 +1,6 @@
 import { Fragment } from "react/jsx-runtime";
 import React from 'react';
+import { Link } from "react-router-dom";
 import './HeaderInfo.css'
 
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -14,7 +15,9 @@ const HeaderInfo = () => {
         </a>
         <nav>
         <a href={apiUrl}>Teams</a>
-        <a href={apiUrl}>AI Chatbot</a>
+        <Link to='/chat'>
+          AI Chatbot
+        </Link>
         <a href={apiUrl}>Dashboards</a>
         <a href={apiUrl + '/auth/google'} className="signIn">Sign In</a>
         </nav>
