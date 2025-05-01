@@ -1,5 +1,5 @@
 .siteWrapper {
-  background: "./assets/niggers.jpg";
+  background: url('./assets/niggers.jpg');
   margin: 0;
   padding: 0;
   min-height: 100vh;
