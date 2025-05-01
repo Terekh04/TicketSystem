@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
-import ListGroup from "./components/ListGroup";
 import RedirectButton from './components/RedirectButton';
+import './App.css';
+
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
