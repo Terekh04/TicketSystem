@@ -23,8 +23,12 @@ header .logoOver{
   text-decoration: none;
   color:#4d648d;
 }
-header .logoOver .logo{
-  padding-left: 20px;
+header .logoOver img{
+  transform: translateY(-10px);
+  height: 50px;
+  aspect-ratio: 1;
+  padding-left: 0px;
+  object-fit: contain;
 }
 header nav{
   display: flex;
