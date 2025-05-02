@@ -1,5 +1,6 @@
 // /src/api.ts
-export const API_BASE = __API_BASE__ as string
+declare const API_BASE:string;
+export { API_BASE };
 
 // Тип ответа от бэка
 interface ShowUser {

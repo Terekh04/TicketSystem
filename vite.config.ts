@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
       }
     } : undefined,
     define: {
-      __API_BASE__: JSON.stringify(
+      API_BASE: JSON.stringify(
         mode === 'production'
           ? `${env.VITE_API_URL}${env.VITE_API_PREFIX}`
           : env.VITE_API_PREFIX
