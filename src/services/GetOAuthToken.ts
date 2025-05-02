@@ -1,23 +1,22 @@
 import { API_BASE } from "../api";
 
 const GetOAuthToken = async () => {
-  console.log(`${API_BASE}'/auth/me'`);
- // пример fetch в TypeScript / React
-  fetch(`${API_BASE}/auth/me`, {
-    method: "GET",
-    credentials: "include",            // <— очень важно!
-    headers: {
-      "Content-Type": "application/json"
-    },
-  })
-  .then(res => {
-    if (!res.ok) throw new Error("Not authenticated");
-    return res.json();
-  })
-  .then(user => {
-    console.log("Current user:", user);
-  })
-  .catch(console.error);
-    };
+  try {
+    const res = await fetch(`${API_BASE}/auth/me`, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-export default GetOAuthToken
+    if (!res.ok) throw new Error("Not authenticated");
+
+    const user = await res.json();
+    console.log("Current user:", user);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export default GetOAuthToken;
