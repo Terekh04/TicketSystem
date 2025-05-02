@@ -1,6 +1,5 @@
 import React from 'react';
 import './GetStarted.css' 
-const apiUrl = import.meta.env.VITE_API_URL;
 import { Link } from 'react-router-dom'; 
 
 const GetStarted = () => {

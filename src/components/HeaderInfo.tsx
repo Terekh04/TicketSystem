@@ -4,22 +4,21 @@ import { Link } from "react-router-dom";
 import { API_BASE } from "../api";
 import './HeaderInfo.css'
 
-const apiUrl = import.meta.env.VITE_API_URL;
 const HeaderInfo = () => {
 
   return (
     <>
       <header>
-        <a href={apiUrl} className="logoOver">
+        <a href={API_BASE} className="logoOver">
           TicketSystem
           <div className="logo"><img src="/android-chrome-black-cropped192x192.png" alt="Logo" loading="lazy"/></div>
         </a>
         <nav>
-        <a href={apiUrl}>Teams</a>
+        <a href={API_BASE}>Teams</a>
         <Link to='/chat'>
           AI Chatbot
         </Link>
-        <a href={apiUrl}>Dashboards</a>
+        <a href={API_BASE}>Dashboards</a>
         <button className="signIn" onClick={() => {
           window.location.href = `${API_BASE}/auth/google`
         }}

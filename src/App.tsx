@@ -6,9 +6,6 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css';
 
 
-
-const apiUrl = import.meta.env.VITE_API_URL;
-
 function App() {
   
   const [user, setUser] = useState<any>(null);
