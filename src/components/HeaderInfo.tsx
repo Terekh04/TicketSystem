@@ -20,7 +20,7 @@ const HeaderInfo = () => {
         </Link>
         <a href={API_BASE}>Dashboards</a>
         <button className="signIn" onClick={() => {
-          window.location.href = `${API_BASE}/auth/google`
+          window.location.href = import.meta.env.VITE_API_URL + '/api/auth/google'
         }}
         >Sign In
         </button>
