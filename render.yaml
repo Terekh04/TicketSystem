@@ -1,14 +1,19 @@
+# render.yaml  (excerpt)
 services:
-  - type: web
+  - type: web               # still a “web” service
     name: ticketsystem-frontend
-    env: node
-    buildCommand: npm install && npm run build
-    startCommand: npx serve -s dist
+    runtime: static         # 👈 THIS unlocks Routes/Proxy
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist # where Vite puts the files
+
+    # no startCommand – Render’s CDN will serve the files
+
     envVars:
       - key: VITE_API_URL
-        value: https://trackzy.onrender.com
+        value: https://trackzy.onrender.com   # stays the same
       - key: VITE_API_PREFIX
         value: /api
+
     routes:
       - type: proxy
         source: /api/(.*)
