@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: ticketsystem-frontend
-    runtime: static
+    name: trackzy-frontend
+    runtime: static           # ← обязательно static, а не node!
     buildCommand: npm ci && npm run build
-    staticPublishPath: dist
+    staticPublishPath: dist   # где лежит ваш index.html
     envVars:
       - key: VITE_API_URL
         value: https://trackzy.onrender.com
@@ -11,6 +11,6 @@ services:
         value: /api
     routes:
       - type: proxy
-        source: /api/(.*)
+        source: /api/(.*)                            # любой /api/…
         destination: https://ticketsystem-qfj9.onrender.com/$1
         enableProxy: true
