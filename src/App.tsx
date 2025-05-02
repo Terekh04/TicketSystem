@@ -1,34 +1,44 @@
-import { useEffect,useState } from 'react';
-import ChatBot from './services/ChatBot';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MainPage from './pages/MainPage';
-import GetOAuthToken from './services/GetOAuthToken';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import './App.css';
+import ChatBot from './services/ChatBot';
+import { User, loginWithGoogle, getCurrentUser } from './services/auth';
 
-
-
-const apiUrl = import.meta.env.VITE_API_URL;
-
-function App() {
-  
-  const [user, setUser] = useState<any>(null);
+export default function App() {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    GetOAuthToken().then(setUser);
-  }, [])
+    getCurrentUser()
+      .then(u => setUser(u))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) {
+    return <div style={{ padding: 20 }}>Загрузка…</div>;
+  }
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={ 
-          <MainPage/>
-        } />
-      <Route path="/chat" element={
-        <ChatBot />
-        } /> 
-    </Routes>
-  </Router>
-
+        <Route
+          path="/"
+          element={
+            <MainPage
+              user={user}             // теперь user имеет тип User | null
+              onLogin={loginWithGoogle}
+            />
+          }
+        />
+        <Route
+          path="/chat"
+          element={
+            user
+              ? <ChatBot />
+              : <Navigate to="/" replace />
+          }
+        />
+      </Routes>
+    </Router>
   );
 }
-
-export default App;

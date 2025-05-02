@@ -1,18 +1,26 @@
 import React from 'react';
-import './GetStarted.css' 
-const apiUrl = import.meta.env.VITE_API_URL;
-import { Link } from 'react-router-dom'; 
+import { User } from '../services/auth';  // ← импорт вашего типа
+import './GetStarted.css';
 
-const GetStarted = () => {
-    return (
-        <div className='start'>
-        <h1>Organize teamwork with AI</h1>
-            <h2>TicketSystem is a task management platform with smart assistant, real time and transparent role structure.</h2>
-            <Link to='/' className='button'>
-                Get Started
-            </Link>
-        </div>
-    );
+interface Props {
+  user: User | null;  // User или null
+  onLogin: () => void;
 }
 
-export default GetStarted
+export default function GetStarted({ user, onLogin }: Props) {
+  return (
+    <div className="start">
+      {user ? (
+        <h1>Добро пожаловать, {user.name ?? user.email}!</h1>
+      ) : (
+        <>
+          <h1>Organize teamwork with AI</h1>
+          <h2>TicketSystem — платформа для управления задачами с AI-ассистентом.</h2>
+          <button className="button" onClick={onLogin}>
+            Get Started
+          </button>
+        </>
+      )}
+    </div>
+  );
+}

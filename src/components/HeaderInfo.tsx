@@ -1,29 +1,33 @@
-import { Fragment } from "react/jsx-runtime";
 import React from 'react';
-import { Link } from "react-router-dom";
-import './HeaderInfo.css'
+import { Link } from 'react-router-dom';
+import { User } from '../services/auth';  // ← импорт вашего типа
+import './HeaderInfo.css';
 
-const apiUrl = import.meta.env.VITE_API_URL;
-const HeaderInfo = () => {
-
-  return (
-    <>
-      <header>
-        <a href={apiUrl} className="logoOver">
-          TicketSystem
-          <div className="logo"><img src="/android-chrome-black-cropped192x192.png" alt="Logo" loading="lazy"/></div>
-        </a>
-        <nav>
-        <a href={apiUrl}>Teams</a>
-        <Link to='/chat'>
-          AI Chatbot
-        </Link>
-        <a href={apiUrl}>Dashboards</a>
-        <a href={apiUrl + '/auth/google'} className="signIn">Sign In</a>
-        </nav>
-      </header>
-    </>
-  );
+interface Props {
+  user: User | null;  // теперь явно User или null
+  onLogin: () => void;
 }
 
-export default HeaderInfo;
+export default function HeaderInfo({ user, onLogin }: Props) {
+  return (
+    <header>
+      <div className="logoOver">
+        TicketSystem
+        <div className="logo">
+          <img src="/android-chrome-black-cropped192x192.png" alt="Logo" />
+        </div>
+      </div>
+      <nav>
+        <Link to="/">Home</Link>
+        <Link to="/chat">AI Chatbot</Link>
+        {user ? (
+          <span className="signIn">Привет, {user.name ?? user.email}</span>
+        ) : (
+          <button className="signIn" onClick={onLogin}>
+            Sign In
+          </button>
+        )}
+      </nav>
+    </header>
+  );
+}
