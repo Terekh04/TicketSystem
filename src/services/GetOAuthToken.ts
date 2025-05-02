@@ -3,7 +3,7 @@ import { API_BASE } from "../api";
 const GetOAuthToken = async () => {
   console.log(`${API_BASE}'/auth/me'`);
  // пример fetch в TypeScript / React
-  fetch(API_BASE + "/auth/me", {
+  fetch(`${API_BASE}/auth/me`, {
     method: "GET",
     credentials: "include",            // <— очень важно!
     headers: {
