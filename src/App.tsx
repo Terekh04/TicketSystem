@@ -1,7 +1,7 @@
 import { useEffect,useState } from 'react';
-import ChatBot from './components/ChatBot';
-import MainPage from './components/MainPage';
-import GetOAuthToken from './components/GetOAuthToken';
+import ChatBot from './services/ChatBot';
+import MainPage from './pages/MainPage';
+import GetOAuthToken from './services/GetOAuthToken';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import './App.css';
 

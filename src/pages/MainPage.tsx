@@ -1,7 +1,7 @@
 import React from "react";
-import HeaderInfo from "./HeaderInfo";
-import Line from "./Line";
-import GetStarted from "./GetStarted";
+import HeaderInfo from "../components/HeaderInfo";
+import Line from "../components/Line";
+import GetStarted from "../components/GetStarted";
 
 const MainPage = () =>{
     return(
