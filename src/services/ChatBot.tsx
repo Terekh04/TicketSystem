@@ -1,5 +1,5 @@
 import { useState } from 'react'
- 
+ import { API_BASE } from '../api';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 type Message = {
@@ -19,7 +19,7 @@ export default function ChatBot() {
     setInput('')
 
     try {
-      const res = await fetch('https://ticketsystem-qfj9.onrender.com/chat', {
+      const res = await fetch(API_BASE + '/chat', {
         method: 'POST',
         credentials: "include",
         headers: { 'Content-Type': 'application/json' },
