@@ -2,7 +2,7 @@ services:
   - type: web
     name: ticketsystem-frontend
     env: node
-    buildCommand: npm run build
+    buildCommand: npm install && npm run build
     startCommand: npx serve -s dist
     envVars:
       - key: VITE_API_URL
@@ -10,9 +10,7 @@ services:
       - key: VITE_API_PREFIX
         value: /api
     routes:
-      - type: rewrite
+      - type: proxy
         source: /api/(.*)
         destination: https://ticketsystem-qfj9.onrender.com/$1
-        status: 200
-        match: path
         enableProxy: true
