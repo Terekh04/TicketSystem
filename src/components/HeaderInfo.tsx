@@ -21,7 +21,7 @@ const HeaderInfo = () => {
         </Link>
         <a href={apiUrl}>Dashboards</a>
         <button className="signIn" onClick={() => {
-          `${API_BASE}/auth/google`
+          window.location.href = `${API_BASE}/auth/google`
         }}
         >Sign In
         </button>
