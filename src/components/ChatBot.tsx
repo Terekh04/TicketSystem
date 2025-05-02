@@ -19,15 +19,15 @@ export default function ChatBot() {
     setInput('')
 
     try {
-      const res = await fetch('https://ticketsystem-qfj9.onrender.com/chat/', {
+      const res = await fetch('https://ticketsystem-qfj9.onrender.com/chat', {
         method: 'POST',
         credentials: "include",
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: input }),
+        body: JSON.stringify({ message: input }),
       })
 
       const data = await res.json()
-      const botMessage: Message = { text: data.response, sender: 'bot' }
+      const botMessage: Message = { text: data.reply, sender: 'bot' }
       setMessages(prev => [...prev, botMessage])
     } catch (err) {
       console.error('Ошибка запроса:', err)
