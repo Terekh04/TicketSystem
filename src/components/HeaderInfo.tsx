@@ -20,7 +20,7 @@ const HeaderInfo = () => {
           AI Chatbot
         </Link>
         <a href={apiUrl}>Dashboards</a>
-        <a href={API_BASE + '/auth/google'} className="signIn">Sign In</a>
+        <a href={`${API_BASE}/auth/google`} className="signIn">Sign In</a>
         </nav>
       </header>
     </>
