@@ -3,7 +3,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 const GetOAuthToken = async () => {
   console.log(apiUrl + '/auth/me');
  // пример fetch в TypeScript / React
-  fetch("https://ticketsystem-qfj9.onrender.com/auth/me", {
+  fetch(`${apiUrl}/auth/me`, {
     method: "GET",
     credentials: "include",            // <— очень важно!
     headers: {
