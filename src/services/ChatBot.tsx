@@ -19,9 +19,9 @@ export default function ChatBot() {
     setInput('')
 
     try {
-      const res = await fetch('https://ticketsystem-qfj9.onrender.com/chat', {
+      const res = await fetch(`${apiUrl}/chat`, {
         method: 'POST',
-        credentials: "include",
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: input }),
       })
