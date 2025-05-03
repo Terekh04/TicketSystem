@@ -2,7 +2,7 @@
     "rewrites": [
       {
         "source": "/api/:path*",
-        "destination": "https://ticketsystem-qfj9.onrender.com/api/:path*"
+        "destination": "https://ticketsystem-qfj9.onrender.com/:path*"
       }
     ]
   }
