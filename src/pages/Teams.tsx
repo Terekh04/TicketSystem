@@ -5,6 +5,6 @@ interface Props {
   onLogin: () => void;
 }
 
-export default function Teams({ user, onLogin }: Props){
+export default function Teams(){
     return <div></div>
 }
