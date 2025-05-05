@@ -19,9 +19,11 @@ export default function HeaderInfo({ user, onLogin }: Props) {
       </div>
       <nav>
         <Link to="/">Home</Link>
+        <Link to="/teams">Teams</Link>
         <Link to="/chat">AI Chatbot</Link>
         {user ? (
-          <span className="signIn">Привет, {user.name ?? user.email}</span>
+          <span className="signIn">Привет, {(user.name?.split(' ')[0])}
+</span>
         ) : (
           <button className="signIn" onClick={onLogin}>
             Sign In
