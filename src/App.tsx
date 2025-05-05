@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import MainPage from './pages/MainPage';
 import ChatBot from './services/ChatBot';
 import { User, loginWithGoogle, getCurrentUser } from './services/auth';
+import RedirectToGoogle from './components/RedirectToGoogle';
+import Teams from './pages/Teams';
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -25,7 +27,7 @@ export default function App() {
           path="/"
           element={
             <MainPage
-              user={user}             // теперь user имеет тип User | null
+              user={user}
               onLogin={loginWithGoogle}
             />
           }
@@ -35,7 +37,15 @@ export default function App() {
           element={
             user
               ? <ChatBot />
-              : <Navigate to="/" replace />
+              : <RedirectToGoogle />
+          }
+        />
+        <Route
+          path="/teams"
+          element={
+            user
+              ? <ChatBot />
+              : <RedirectToGoogle />
           }
         />
       </Routes>
