@@ -44,7 +44,7 @@ export default function App() {
           path="/teams"
           element={
             user
-              ? <ChatBot />
+              ? <Teams />
               : <RedirectToGoogle />
           }
         />
