@@ -4,7 +4,7 @@ import MainPage from './pages/MainPage';
 import ChatBot from './services/ChatBot';
 import { User, loginWithGoogle, getCurrentUser } from './services/auth';
 import RedirectToGoogle from './components/RedirectToGoogle';
-import Teams from './pages/Teams';
+import ProtectedRoute from './pages/Teams';
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -43,9 +43,9 @@ export default function App() {
         <Route
           path="/teams"
           element={
-            user
-              ? <Teams />
-              : <RedirectToGoogle />
+            <ProtectedRoute user= {user}>
+              <ChatBot />
+            </ProtectedRoute>
           }
         />
       </Routes>
