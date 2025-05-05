@@ -20,7 +20,7 @@ export default function HeaderInfo({ user, onLogin }: Props) {
       </div>
       <nav>
         <Link to="/">Home</Link>
-        <Link to={user ? "/chat" : "#"}
+        <Link to={user ? "/teams" : "#"}
           onClick={(e) => {
             if (!user) {
               e.preventDefault(); // отменяем переход
