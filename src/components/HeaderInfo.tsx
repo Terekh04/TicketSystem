@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { User } from '../services/auth';  // ← импорт вашего типа
+import { loginWithGoogle } from '../services/auth';
 import './HeaderInfo.css';
 
 interface Props {
@@ -19,8 +20,21 @@ export default function HeaderInfo({ user, onLogin }: Props) {
       </div>
       <nav>
         <Link to="/">Home</Link>
-        <Link to="/teams">Teams</Link>
-        <Link to="/chat">AI Chatbot</Link>
+        <Link to={user ? "/chat" : "#"}
+          onClick={(e) => {
+            if (!user) {
+              e.preventDefault(); // отменяем переход
+              loginWithGoogle(); // запускаем авторизацию
+            }
+          }}>Teams</Link>
+        <Link to={user ? "/chat" : "#"}
+          onClick={(e) => {
+            if (!user) {
+              e.preventDefault(); // отменяем переход
+              loginWithGoogle(); // запускаем авторизацию
+            }
+          }}>
+            AI Chatbot</Link>
         {user ? (
           <span className="signIn">Привет, {(user.name?.split(' ')[0])}
 </span>
