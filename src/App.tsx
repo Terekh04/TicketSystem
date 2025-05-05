@@ -35,18 +35,14 @@ export default function App() {
         <Route
           path="/chat"
           element={
-            user
-              ? <ChatBot />
-              : <RedirectToGoogle />
-          }
-        />
-        <Route
-          path="/teams"
-          element={
             <ProtectedRoute user= {user}>
               <ChatBot />
             </ProtectedRoute>
           }
+        />
+        <Route
+          path="/teams"
+
         />
       </Routes>
     </Router>
