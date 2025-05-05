@@ -35,9 +35,7 @@ export default function App() {
         <Route
           path="/chat"
           element={
-            user
-              ? <ChatBot />
-              : <RedirectToGoogle />
+            <ChatBot />
           }
         />
         <Route
