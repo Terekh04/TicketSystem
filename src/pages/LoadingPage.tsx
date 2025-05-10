@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { User } from "../services/auth";
-
+import './LoadingPage.css';
 
 interface Props {
   userName?: string;
@@ -21,7 +21,7 @@ export default function IntroScreen({ userName = "Stranger", onComplete }: Props
   const [showName, setShowName] = useState(false);
   const [startFade, setStartFade] = useState(false); // 🔄 для запуска фэйда
   const [hideIntro, setHideIntro] = useState(false);
-
+  const text = `Hello, ${name}!`.split("");
   useEffect(() => {
     const timers = [
       setTimeout(() => setShowHello(true), 500),
@@ -30,7 +30,7 @@ export default function IntroScreen({ userName = "Stranger", onComplete }: Props
       setTimeout(() => {
         setHideIntro(true); // убираем интро после fade
         onComplete();
-      }, 5500),
+      }, 5000),
     ];
     return () => timers.forEach(clearTimeout);
   }, [onComplete]);
@@ -61,31 +61,21 @@ export default function IntroScreen({ userName = "Stranger", onComplete }: Props
                 fontFamily: "'Sora', sans-serif",
    }}
             >
-              <div className="hello">
               {showHello && (
-  <motion.div
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ duration: 1 }}
-  style={{ display: "flex", gap: "0.5em" }}
->
-  <motion.span
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1, delay: 0 }} // появление сразу
-  >
-    Hello...
-  </motion.span>
-  <motion.span
-    initial={{ opacity: 0 }}
-    animate={{ opacity: showName ? 1 : 0 }}
-    transition={{ duration: 1, delay: 1 }} // появление с задержкой
-  >
-    {name}
-  </motion.span>
-</motion.div>
-              )}
+                <div>
+      {text.map((char, index) => (
+      <motion.span
+        key={index}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: index * 0.1 }}
+      >
+        {char}
+      </motion.span>
+    ))}
               </div>
+
+              )}
             </motion.div>
           )}
         </AnimatePresence>
