@@ -3,25 +3,34 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import MainPage from './pages/MainPage';
 import ChatBot from './services/ChatBot';
 import { User, loginWithGoogle, getCurrentUser } from './services/auth';
-import RedirectToGoogle from './components/RedirectToGoogle';
-import ProtectedRoute from './pages/Teams';
+import IntroScreen from './pages/LoadingPage';
+import { motion, AnimatePresence } from "framer-motion";
+
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [introDone, setIntroDone] = useState(false);
 
+  // Получение текущего пользователя
   useEffect(() => {
     getCurrentUser()
       .then(u => setUser(u))
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) {
-    return <div style={{ padding: 20 }}>Загрузка…</div>;
-  }
 
   return (
-    <Router>
+    <>
+      {!introDone && <IntroScreen userName={user?.name || "Stranger"} onComplete={() => setIntroDone(true)} />}
+      <AnimatePresence>
+  {introDone && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.5 }}
+      key="main-content"
+    >
       <Routes>
         <Route
           path="/"
@@ -34,15 +43,16 @@ export default function App() {
         />
         <Route
           path="/chat"
-          element={
-            <ChatBot />
-          }
+          element={<ChatBot />}
         />
         <Route
           path="/teams"
-
+          element={<div>Teams page</div>}
         />
       </Routes>
-    </Router>
+    </motion.div>
+  )}
+</AnimatePresence>
+  </ >
   );
 }
