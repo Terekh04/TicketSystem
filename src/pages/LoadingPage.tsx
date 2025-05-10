@@ -26,11 +26,11 @@ export default function IntroScreen({ userName = "Stranger", onComplete }: Props
     const timers = [
       setTimeout(() => setShowHello(true), 500),
       setTimeout(() => setShowName(true), 1500),
-      setTimeout(() => setStartFade(true), 4500),      // начало фэйда
+      setTimeout(() => setStartFade(true), 2500),      // начало фэйда
       setTimeout(() => {
         setHideIntro(true); // убираем интро после fade
         onComplete();
-      }, 5000),
+      }, 4000),
     ];
     return () => timers.forEach(clearTimeout);
   }, [onComplete]);
