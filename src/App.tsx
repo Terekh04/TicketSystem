@@ -19,53 +19,48 @@ export default function App() {
       .finally(() => setLoading(false));
   }, []);
 
+  // Проверка, нужно ли показывать интро
   useEffect(() => {
-  const hasSeenIntro = localStorage.getItem('hasSeenIntro');
-
-  if (hasSeenIntro) {
-    setIntroDone(true);
-  }
-}, []);
-
+    if (!loading) {
+      const hasSeenIntro = localStorage.getItem('hasSeenIntro');
+      if (hasSeenIntro) {
+        setIntroDone(true);
+      }
+    }
+  }, [loading]); // ждём, пока загрузится пользователь
 
   return (
     <>
-      {!introDone && <IntroScreen userName={user?.name || "Stranger"}
-       onComplete={() => {
-        localStorage.setItem('hasSeenIntro', 'true'); 
-        setIntroDone(true)}
-        } 
-        />}
+      {!introDone && !loading && (
+        <IntroScreen
+          userName={user?.name || "Stranger"}
+          onComplete={() => {
+            localStorage.setItem('hasSeenIntro', 'true');
+            setIntroDone(true);
+          }}
+        />
+      )}
+
       <AnimatePresence>
-  {introDone && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
-      key="main-content"
-    >
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <MainPage
-              user={user}
-              onLogin={loginWithGoogle}
-            />
-          }
-        />
-        <Route
-          path="/chat"
-          element={<ChatBot user={user} onLogin={loginWithGoogle}/>}
-        />
-        <Route
-          path="/teams"
-          element={<div>Teams page</div>}
-        />
-      </Routes>
-    </motion.div>
-  )}
-</AnimatePresence>
-  </ >
+        {introDone && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+            key="main-content"
+          >
+            <Routes>
+              <Route
+                path="/"
+                element={<MainPage user={user} onLogin={loginWithGoogle} />}
+              />
+              <Route path="/chat" element={<ChatBot user={user} onLogin={loginWithGoogle} />} />
+              <Route path="/teams" element={<div>Teams page</div>} />
+            </Routes>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
+
