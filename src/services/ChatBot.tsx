@@ -1,13 +1,18 @@
 import { useState } from 'react'
- 
+import { User } from './auth';
+import HeaderInfo from '../components/HeaderInfo';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 type Message = {
   text: string
   sender: 'user' | 'bot'
 }
+interface Props {
+  user: User | null;
+  onLogin: () => void;
+}
 
-export default function ChatBot() {
+export default function ChatBot({ user, onLogin }: Props) {
   const [input, setInput] = useState('')
   const [messages, setMessages] = useState<Message[]>([])
 
@@ -35,7 +40,9 @@ export default function ChatBot() {
   }
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '600px', margin: 'auto' }}>
+
+    <div >
+      <HeaderInfo user={user} onLogin={onLogin}/>
       <h1>🤖 Gemini Chat</h1>
 
       <div style={{
