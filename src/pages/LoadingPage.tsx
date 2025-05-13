@@ -9,12 +9,39 @@ interface Props {
 }
 
 export default function IntroScreen({ userName = "Stranger", onComplete }: Props) {
-  const user: User = {
-    id: 0,
-    name: userName,
-    email: "",
-    role: "user",
-  };
+const user: User = {
+  name: "", // Имя пользователя
+  id: 0, // Уникальный идентификатор
+  email: "", // Email пользователя
+  is_available: false, // Статус доступности
+  teams: [ // Пример с массивом команд, он может быть пустым или отсутствовать
+    {
+      team: {
+        id: 0,
+        name: "",
+        code: "",
+        created_at: "",
+      },
+      role: "",
+      joined_at: "",
+      projects: [ // Пример с массивом проектов
+        {
+          project: {
+            id: 0,
+            name: "",
+            description: "",
+            team_id: 0,
+            created_by: 0,
+            created_at: "",
+          },
+          role: "",
+          joined_at: "",
+        },
+      ],
+    },
+  ],
+};
+
 
   const name = userName.split(" ")[0];
   const [showHello, setShowHello] = useState(false);
@@ -26,9 +53,9 @@ export default function IntroScreen({ userName = "Stranger", onComplete }: Props
     const timers = [
       setTimeout(() => setShowHello(true), 500),
       setTimeout(() => setShowName(true), 1500),
-      setTimeout(() => setStartFade(true), 2500),      // начало фэйда
+      setTimeout(() => setStartFade(true), 2500),      
       setTimeout(() => {
-        setHideIntro(true); // убираем интро после fade
+        setHideIntro(true); 
         onComplete();
       }, 4000),
     ];
@@ -50,8 +77,6 @@ export default function IntroScreen({ userName = "Stranger", onComplete }: Props
                 left: 0,
                 width: "100vw",
                 height: "100vh",
-                background: "white",
-                color: "black",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
