@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useEffect, useState} from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate,useLocation } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import ChatBot from './services/ChatBot';
 import { User, loginWithGoogle, getCurrentUser } from './services/auth';
 import IntroScreen from './pages/LoadingPage';
 import { motion, AnimatePresence } from "framer-motion";
 
+interface LocationState {
+  skipIntro?: boolean;
+}
 
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [introDone, setIntroDone] = useState(false);
+
+  // Типизируем useLocation
+  const location = useLocation(); // Используем useLocation без дженерика
 
   // Получение текущего пользователя
   useEffect(() => {
@@ -19,25 +25,22 @@ export default function App() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Проверка, нужно ли показывать интро
+  // Проверка, нужно ли скипнуть интро
   useEffect(() => {
     if (!loading) {
-      const hasSeenIntro = localStorage.getItem('hasSeenIntro');
-      if (hasSeenIntro) {
-        setIntroDone(true);
+      const state = location.state as LocationState | null; // Явно кастуем тип состояния
+      if (state?.skipIntro) {
+        setIntroDone(true); // Пропускаем интро, если есть флаг
       }
     }
-  }, [loading]); // ждём, пока загрузится пользователь
+  }, [loading, location]);
 
   return (
     <>
       {!introDone && !loading && (
         <IntroScreen
           userName={user?.name || "Stranger"}
-          onComplete={() => {
-            localStorage.setItem('hasSeenIntro', 'true');
-            setIntroDone(true);
-          }}
+          onComplete={() => setIntroDone(true)}
         />
       )}
 
@@ -54,7 +57,7 @@ export default function App() {
                 path="/"
                 element={<MainPage user={user} onLogin={loginWithGoogle} />}
               />
-              <Route path="/chat" element={<ChatBot user={user} onLogin={loginWithGoogle} />} />
+              <Route path="/chat" element={<ChatBot user={user} onLogin={loginWithGoogle}/>} />
               <Route path="/teams" element={<div>Teams page</div>} />
             </Routes>
           </motion.div>
@@ -63,4 +66,3 @@ export default function App() {
     </>
   );
 }
-

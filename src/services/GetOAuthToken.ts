@@ -1,8 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const GetOAuthToken = async () => {
+  const navigate = useNavigate(); // Используем navigate
+
   console.log(apiUrl + '/auth/me');
- // пример fetch в TypeScript / React
+
+  // пример fetch в TypeScript / React
   fetch(`${apiUrl}/auth/me`, {
     method: "GET",
     credentials: "include",            // <— очень важно!
@@ -16,8 +20,11 @@ const GetOAuthToken = async () => {
   })
   .then(user => {
     console.log("Current user:", user);
+
+    // После успешной аутентификации, перенаправляем с параметром, чтобы пропустить интро
+    navigate('/', { state: { skipIntro: true } });
   })
   .catch(console.error);
-    };
+};
 
-export default GetOAuthToken
+export default GetOAuthToken;
