@@ -1,12 +1,37 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
 export interface User {
+  name: string;
   id: number;
-  name?: string;
   email: string;
-  role: string;
+  is_available: boolean;
+  teams?: Teams[];
 }
-
+export interface Teams{
+  team: TeamID;
+  role: string,
+  joined_at: string;
+  projects?: ProjectMembership[];
+}
+export interface TeamID{
+  id: number;
+  name: string;
+  code: string;
+  created_at: string;
+}
+export interface ProjectMembership{
+  project: Project;
+  role: string;
+  joined_at: string;
+}
+export interface Project{
+  id: number;
+  name: string;
+  description: string;
+  team_id: number;
+  created_by: number;
+  created_at: string;
+}
 export function loginWithGoogle() {
   // В dev → "https://ticketsystem-qfj9.onrender.com/auth/google"
   // В prod →   "/api/auth/google"
