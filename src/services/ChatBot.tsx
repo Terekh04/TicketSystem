@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { User } from './auth';
 import HeaderInfo from '../components/HeaderInfo';
+import Line from '../components/Line';
+import './ChatBot.css'
 const apiUrl = import.meta.env.VITE_API_URL;
 
 type Message = {
@@ -41,8 +43,10 @@ export default function ChatBot({ user, onLogin }: Props) {
 
   return (
 
-    <div >
-      <HeaderInfo user={user} onLogin={onLogin}/>
+    <>
+      <div className='header'><HeaderInfo user={user} onLogin={onLogin} /></div>
+      <Line/>
+      <div className='chat'>
       <h1>🤖 Gemini Chat</h1>
 
       <div style={{
@@ -87,6 +91,7 @@ export default function ChatBot({ user, onLogin }: Props) {
           ➤
         </button>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
