@@ -19,10 +19,23 @@ export default function App() {
       .finally(() => setLoading(false));
   }, []);
 
+  useEffect(() => {
+  const hasSeenIntro = localStorage.getItem('hasSeenIntro');
+
+  if (hasSeenIntro) {
+    setIntroDone(true);
+  }
+}, []);
+
 
   return (
     <>
-      {!introDone && <IntroScreen userName={user?.name || "Stranger"} onComplete={() => setIntroDone(true)} />}
+      {!introDone && <IntroScreen userName={user?.name || "Stranger"}
+       onComplete={() => {
+        localStorage.setItem('hasSeenIntro', 'true'); 
+        setIntroDone(true)}
+        } 
+        />}
       <AnimatePresence>
   {introDone && (
     <motion.div
