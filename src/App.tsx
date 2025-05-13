@@ -56,7 +56,7 @@ export default function App() {
         />
         <Route
           path="/chat"
-          element={<ChatBot />}
+          element={<ChatBot user={user} onLogin={loginWithGoogle}/>}
         />
         <Route
           path="/teams"
