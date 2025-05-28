@@ -101,18 +101,34 @@ body {
   max-width: 100%; /* Важно для корректной работы */
 }
 
-.message{
+.message-wrapper {
+  display: flex;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.message-wrapper.user {
+  justify-content: flex-end;
+}
+
+.message-wrapper.bot {
+  justify-content: flex-start;
+}
+
+.message {
   display: inline-block;
-
-}
-
-.message.user{
-  text-align: right;
+  max-width: 75%;
+  padding: 10px 14px;
+  border-radius: 16px;
   background-color: #c4dbf0;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
-.message.bot{
-  text-align: left;
+
+.message-wrapper.bot .message {
+  background-color: #e5e5ea;
 }
+
 .margin{
   justify-content: flex-end;
 }

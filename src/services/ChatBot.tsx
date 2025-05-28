@@ -92,14 +92,16 @@ export default function ChatBot({ user, onLogin }: Props) {
             ref={chatContainerRef}>
               <div className="chat">
                 {messages.map((msg, index) => (
+                  <div className={`message-wrapper  ${msg.sender === 'user' ? 'user' : 'bot'}`}>
                   <div
                     key={index}
-                    className={`message ${msg.sender === 'user' ? 'user' : 'bot'}`}
+                    className={`message`}
                     >
                       <span
                       >
                     {msg.text}
                       </span>
+                </div>
                 </div>
               ))}
 
