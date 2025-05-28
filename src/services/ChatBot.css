@@ -101,10 +101,10 @@ body {
   max-width: 100%; /* Важно для корректной работы */
 }
 
-message.user{
+.message.user{
   text-align: right;
 }
-message.bot{
+.message.bot{
   text-align: left;
 }
 .margin{
