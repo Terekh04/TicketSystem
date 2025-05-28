@@ -101,8 +101,14 @@ body {
   max-width: 100%; /* Важно для корректной работы */
 }
 
+.message{
+  display: inline-block;
+
+}
+
 .message.user{
   text-align: right;
+  background-color: #c4dbf0;
 }
 .message.bot{
   text-align: left;

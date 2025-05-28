@@ -97,9 +97,6 @@ export default function ChatBot({ user, onLogin }: Props) {
                     className={`message ${msg.sender === 'user' ? 'user' : 'bot'}`}
                     >
                       <span
-                        style={{
-                          background: msg.sender === 'user' ? '#aee1f9' : '#e1e1e1',
-                        }}
                       >
                     {msg.text}
                       </span>
