@@ -1,7 +1,5 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect} from 'react'
 import { User } from './auth';
-import HeaderInfo from '../components/HeaderInfo';
-import Line from '../components/Line';
 import './ChatBot.css'
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -17,6 +15,27 @@ interface Props {
 export default function ChatBot({ user, onLogin }: Props) {
   const [input, setInput] = useState('')
   const [messages, setMessages] = useState<Message[]>([])
+  const [sidebarVisible, setSidebarVisible] = useState(false)
+  const chatContainerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+  const updateChatPosition = () => {
+    const leftWidth = 64
+    const sidebarWidth = sidebarVisible ? 260 : 0
+    const effectiveWidth = `calc(50% - ${(leftWidth + sidebarWidth) / 2}px)`
+    if (chatContainerRef.current) {
+      chatContainerRef.current.style.width = effectiveWidth
+    }
+  }
+
+  window.addEventListener('resize', updateChatPosition)
+  updateChatPosition()
+
+  return () => window.removeEventListener('resize', updateChatPosition)
+}, [sidebarVisible])
+
+  const hasMessages = messages.length > 0
+
 
   const sendMessage = async () => {
     if (!input.trim()) return
@@ -40,58 +59,69 @@ export default function ChatBot({ user, onLogin }: Props) {
       console.error('Ошибка запроса:', err)
     }
   }
+  
 
   return (
+  <div className="layout">
+    <aside className={`sidebar ${sidebarVisible ? 'visible' : ''}`}>
+  <div className="aside-content">
+    <div className="top">
+      <button className="toggle toggle-open" >☰</button>
+      <button id="slidebar-end" className="toggle toggle-close"  onClick={() => setSidebarVisible(false)}>☰</button>
+    </div>
 
-    <>
-      <div className='header'><HeaderInfo user={user} onLogin={onLogin} /></div>
-      <Line/>
-      <div className='chat'>
-      <h1>🤖 Gemini Chat</h1>
+    <div className="chats"></div>
 
-      <div style={{
-        border: '1px solid #ccc',
-        padding: '1rem',
-        height: '300px',
-        overflowY: 'auto',
-        marginBottom: '1rem'
-      }}>
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            style={{
-              textAlign: msg.sender === 'user' ? 'right' : 'left',
-              margin: '0.5rem 0'
-            }}
-          >
-            <span
-              style={{
-                background: msg.sender === 'user' ? '#aee1f9' : '#e1e1e1',
-                padding: '0.5rem 1rem',
-                borderRadius: '10px',
-                display: 'inline-block',
-                maxWidth: '80%'
-              }}
-            >
-              {msg.text}
-            </span>
+    <div className="bottom">
+      <button className="toggle toggle-open">☰</button>
+    </div>
+  </div>
+</aside>
+
+    <main className="main">
+        <div className="left">
+          <div className="top">
+            <button className="toggle toggle-open">☰</button>
+            <button id="slidebar-start"className="toggle toggle-open" onClick={() => setSidebarVisible(true)}>☰</button>
           </div>
-        ))}
-      </div>
+          <button className="toggle toggle-open">☰</button>
+        </div>
+        <div className="content">
+            <div 
+            className={`chat-container ${hasMessages ? 'bottom' : 'centered'}`}
+            ref={chatContainerRef}>
+              <div className="chat">
+                {messages.map((msg, index) => (
+                  <div
+                    key={index}
+                    className={`message ${msg.sender === 'user' ? 'user' : 'bot'}`}
+                    >
+                      <span
+                        style={{
+                          background: msg.sender === 'user' ? '#aee1f9' : '#e1e1e1',
+                        }}
+                      >
+                    {msg.text}
+                      </span>
+                </div>
+              ))}
 
-      <div>
-        <input
-          value={input}
-          onChange={e => setInput(e.target.value)}
-          placeholder="Напиши что-нибудь..."
-          onKeyDown={e => e.key === 'Enter' && sendMessage()}
-          style={{ width: '80%', padding: '0.5rem' }}
-        />
-        <button onClick={sendMessage} style={{ padding: '0.5rem 1rem', marginLeft: '0.5rem' }}>
-          ➤
-        </button>
-      </div>
-      </div>
-    </>
+              </div>
+              <div className="input-container">
+                <span className={`starting-text ${hasMessages ? 'hidden' : 'visible'}`}>Need some support?</span>
+                <div className="input-wrapper">
+                  <input type="text"
+                    placeholder="Ask a question"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && sendMessage()}/>
+                  <button className="send-button" onClick={sendMessage}>➤</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </main>
+  </div>
+
   )
 }
