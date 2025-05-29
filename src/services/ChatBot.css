@@ -118,11 +118,11 @@ body {
 .message {
   display: inline-block;
   max-width: 75%;
-  padding: 10px 14px;
   border-radius: 16px;
   background-color: #c4dbf0;
   word-wrap: break-word;
   white-space: normal;
+  margin-bottom:10px;
 }
 
 .message-wrapper.bot .message {
