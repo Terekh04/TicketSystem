@@ -82,15 +82,7 @@ body {
   justify-content: flex-end;
 }
 
-.chat-container span {
-  display: inline-block; /* или block */
-  width: 80%; /* Занимает всю ширину родителя */
-  word-wrap: break-word; /* Перенос длинных слов */
-  overflow-wrap: break-word; /* Альтернатива для современных браузеров */
-  white-space: normal; /* Разрешает перенос строк */
-  padding:0 0 20px 0;
 
-}
 .chat{
   display: flex;
   flex-direction: column;
@@ -116,13 +108,13 @@ body {
 }
 
 .message {
-  display: inline-block;
-  max-width: 75%;
-  padding: 10px 14px;
-  border-radius: 16px;
-  background-color: #c4dbf0;
-  word-wrap: break-word;
-  white-space: pre-wrap;
+  display: inline-block; /* или block */
+  width: 80%; /* Занимает всю ширину родителя */
+  word-wrap: break-word; /* Перенос длинных слов */
+  overflow-wrap: break-word; /* Альтернатива для современных браузеров */
+  white-space: normal; /* Разрешает перенос строк */
+  padding:0 0 20px 0;
+  border-radius: 15px;
 }
 
 .message-wrapper.bot .message {
